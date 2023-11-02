@@ -1,11 +1,10 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 
 const API_BASE_URL = 'http://localhost:5000'
 
-export const getWeatherData = async (city: string) => {
+export const getWeatherData = async (city: string): Promise<AxiosResponse<any, any>> => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/weather/${city}`)
-    return response.data
+    return await axios.get(`${API_BASE_URL}/weather/${city}`)
   } catch (error) {
     throw new Error('Error fetching calling the api')
   }

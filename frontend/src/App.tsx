@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { getWeatherData } from './utils/getWeatherData'
+import SelectCity from './components/SelectCity'
+import WeatherCard from './components/WeatherCard'
 
 function App() {
   const [weatherData, setWeatherData] = useState<any>(null)
@@ -27,28 +29,15 @@ function App() {
   }, [city, fetchWeatherData])
 
   const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value)
     setCity(e.target.value)
   }
 
   return (
-    <div className="App">
-      <h1>Weather App</h1>
-      <input type="text" placeholder="Enter city name" value={city} onChange={handleCityChange} />
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : weatherData ? (
-        <div>
-          <h2>
-            Weather in {weatherData.name}, {weatherData.sys.country}
-          </h2>
-          <p>Temperature: {weatherData.main.temp}°C</p>
-          <p>Weather: {weatherData.weather[0].description}</p>
-        </div>
-      ) : null}
-    </div>
+    <>
+      <SelectCity city={city} handleCityChange={handleCityChange} />
+      {error && <p className="text-red-500">Oops, apologies: {error}</p>}
+      <WeatherCard displayedweatherData={weatherData} loading={loading} />
+    </>
   )
 }
 
