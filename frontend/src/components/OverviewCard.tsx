@@ -1,10 +1,10 @@
-import { DisplayedweatherData } from '../types/types'
+import { DisplayedWeatherData } from '../types/types'
 
 const OverviewCard = ({
   displayedWeatherData,
   loading
 }: {
-  displayedWeatherData: DisplayedweatherData
+  displayedWeatherData: DisplayedWeatherData
   loading: boolean
 }) =>
   displayedWeatherData ? (

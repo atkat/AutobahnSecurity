@@ -9,7 +9,7 @@ export class WeatherController {
   @Get(':city')
   async getWeatherData(@Param('city') city: string): Promise<MappedWeatherData> {
     const weatherDataResponse = await this.weatherService.getWeatherData(city)
-    const mappedWeatherData = this.weatherService.mapWeatherData(weatherDataResponse as any)
+    const mappedWeatherData = this.weatherService.mapWeatherData(weatherDataResponse as any) // TODO fix type
 
     // in case the rrequest fails, there is mock data for three possible entries
     // 'Berlin', 'London', Lisbon

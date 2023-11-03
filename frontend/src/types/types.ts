@@ -1,4 +1,4 @@
-export type DisplayedweatherData = {
+export type DisplayedWeatherData = {
   locationName: string
   headline: string
   icon: string
@@ -17,6 +17,6 @@ export type DisplayedweatherData = {
 }
 
 export type OverviewCardProps = {
-  displayedweatherData: DisplayedweatherData
+  displayedweatherData: DisplayedWeatherData
   loading: boolean
 }

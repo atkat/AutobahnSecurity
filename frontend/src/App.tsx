@@ -5,13 +5,14 @@ import OverviewCard from './components/OverviewCard'
 import { debounce } from 'lodash'
 
 function App() {
-  const [displayedWeatherData, setDisplayedWeatherData] = useState<any>(null)
+  const [displayedWeatherData, setDisplayedWeatherData] = useState<any>(null) //TODO: add type
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [query, setQuery] = useState<string>('')
+  // potential TODO add query to url so that search results persist on reload
 
   const fetchWeatherData = debounce(async (value) => {
-    if (!value || value.length < 3) {
+    if (!value || value.length < 2) {
       return
     }
 
@@ -24,17 +25,20 @@ function App() {
       const weatherDataResponse = await getWeatherData(query)
       setDisplayedWeatherData(weatherDataResponse.data)
     } catch (error) {
-      setError('City not found. Please check the city name.')
+      setError('Information not found.')
+      setDisplayedWeatherData(null)
     } finally {
       setLoading(false)
     }
   }, 400)
 
-  const debouncedSearch = useCallback((value: string) => fetchWeatherData(value), [])
+  const debouncedSearch = useCallback(
+    (value: string) => fetchWeatherData(value),
+    [fetchWeatherData]
+  )
 
   const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
-    setQuery(e.target.value)
     setQuery(value)
     debouncedSearch(value)
   }
