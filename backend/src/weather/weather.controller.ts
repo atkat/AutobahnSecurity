@@ -1,7 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common'
 import { WeatherService } from './weather.service'
 import { MappedWeatherData } from '../types/types'
-
 @Controller('weather')
 export class WeatherController {
   constructor(private readonly weatherService: WeatherService) {}
