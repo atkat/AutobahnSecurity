@@ -15,7 +15,7 @@ export class WeatherService {
   async getWeatherData(city: string): Promise<AxiosResponse<WeatherData>> {
     try {
       const response = this.httpService.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=80761d58d37fb70d5b32eb97f2f41646&units=metric`
       )
       const firstValue = await firstValueFrom(response)
       return firstValue.data

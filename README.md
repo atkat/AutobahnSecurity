@@ -14,7 +14,9 @@ Make sure you have Node.js and npm (Node Package Manager) installed on your syst
 
 2. Navigate to the project directory:
 
-3. Install the backend and frontend dependencies:
+3. Install the backend and frontend dependencies.
+
+4. Use my api key in the request, I sent it by email.
 
 ## Running the App
 
