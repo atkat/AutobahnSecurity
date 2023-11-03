@@ -2,27 +2,18 @@ import { useState, useEffect, useCallback } from 'react'
 import { getWeatherData } from './utils/getWeatherData'
 import SelectCity from './components/SelectCity'
 import OverviewCard from './components/OverviewCard'
-import { debounce } from 'lodash'
 
 function App() {
-  const [displayedWeatherData, setDisplayedWeatherData] = useState<any>(null) //TODO: add type
-  const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string | null>(null)
-  const [query, setQuery] = useState<string>('')
-  // potential TODO add query to url so that search results persist on reload
+  const [displayedWeatherData, setDisplayedWeatherData] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [query, setQuery] = useState('')
 
-  const fetchWeatherData = debounce(async (value) => {
-    if (!value || value.length < 2) {
-      return
-    }
-
-    if (value === query) {
-      return
-    }
+  const fetchWeatherData = useCallback(async (value) => {
     try {
       setLoading(true)
-      setError(null)
-      const weatherDataResponse = await getWeatherData(query)
+      setError('')
+      const weatherDataResponse = await getWeatherData(value)
       setDisplayedWeatherData(weatherDataResponse.data)
     } catch (error) {
       setError('Information not found.')
@@ -30,17 +21,12 @@ function App() {
     } finally {
       setLoading(false)
     }
-  }, 400)
+  }, [])
 
-  const debouncedSearch = useCallback(
-    (value: string) => fetchWeatherData(value),
-    [fetchWeatherData]
-  )
-
-  const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCityChange = (e) => {
     const { value } = e.target
     setQuery(value)
-    debouncedSearch(value)
+    fetchWeatherData(value)
   }
 
   useEffect(() => {
