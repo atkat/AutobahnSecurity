@@ -3,7 +3,7 @@ export type DisplayedweatherData = {
   headline: string
   icon: string
   temp: number
-  feels_like: number
+  feelsLike: number
   temp_min: number
   temp_max: number
   pressure: number
@@ -16,7 +16,7 @@ export type DisplayedweatherData = {
   sunset: number
 }
 
-export type WeatherCardProps = {
+export type OverviewCardProps = {
   displayedweatherData: DisplayedweatherData
   loading: boolean
 }
