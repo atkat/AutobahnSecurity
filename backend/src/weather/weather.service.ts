@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { HttpService } from '@nestjs/axios'
 import { AxiosResponse } from 'axios'
-import { MappedWeatherData, WeatherData } from '../../types/types'
+import { MappedWeatherData, WeatherData } from '../types/types'
 import { firstValueFrom } from 'rxjs'
 //   `${process.env.OPENWEATHERMAP_API_URL}?q=${city}&appid=${process.env.OPENWEATHERMAP_API_KEY}&units=metric`
 @Injectable()
@@ -36,8 +36,8 @@ export class WeatherService {
       locationName,
       headline: description,
       icon,
-      temp,
-      feels_like,
+      temp: Math.floor(temp),
+      feelsLike: Math.floor(feels_like),
       temp_min,
       temp_max,
       pressure,

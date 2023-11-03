@@ -1,4 +1,4 @@
-import { WeatherData } from 'types/types'
+import { WeatherData } from '../types/types'
 
 const londonWeatherResponse = {
   coord: { lon: -0.1257, lat: 51.5085 },

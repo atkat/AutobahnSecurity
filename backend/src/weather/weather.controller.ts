@@ -1,7 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common'
 import { WeatherService } from './weather.service'
-import { MappedWeatherData } from '../../types/types'
-import { useMockData } from 'src/utils/mocks'
+import { MappedWeatherData } from '../types/types'
 
 @Controller('weather')
 export class WeatherController {
@@ -9,11 +8,14 @@ export class WeatherController {
 
   @Get(':city')
   async getWeatherData(@Param('city') city: string): Promise<MappedWeatherData> {
-    // const weatherDataResponse = await this.weatherService.getWeatherData(city)
-    // const mappedWeatherData = this.weatherService.mapWeatherData(weatherDataResponse.data)
+    const weatherDataResponse = await this.weatherService.getWeatherData(city)
+    const mappedWeatherData = this.weatherService.mapWeatherData(weatherDataResponse as any)
 
-    const mockResult: MappedWeatherData = this.weatherService.mapWeatherData(useMockData(city))
+    // in case the rrequest fails, there is mock data for three possible entries
+    // 'Berlin', 'London', Lisbon
+    // so that you can see the fronted connects to the backend and displays data
+    // const mockResult: MappedWeatherData = this.weatherService.mapWeatherData(useMockData(city))
 
-    return mockResult
+    return mappedWeatherData
   }
 }

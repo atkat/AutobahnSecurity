@@ -1,4 +1,4 @@
-import { WeatherData, MappedWeatherData } from 'types/types'
+import { WeatherData, MappedWeatherData } from 'src/types/types'
 
 export const mapWeatherData = (weatherData: WeatherData): MappedWeatherData => {
   const {
@@ -17,7 +17,7 @@ export const mapWeatherData = (weatherData: WeatherData): MappedWeatherData => {
     headline: description,
     icon,
     temp,
-    feels_like,
+    feelsLike: feels_like,
     temp_min,
     temp_max,
     pressure,

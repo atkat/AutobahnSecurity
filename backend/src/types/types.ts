@@ -33,7 +33,7 @@ export type MappedWeatherData = {
   headline: string
   icon: string
   temp: number
-  feels_like: number
+  feelsLike: number
   temp_min: number
   temp_max: number
   pressure: number

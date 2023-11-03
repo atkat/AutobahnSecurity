@@ -1,6 +1,6 @@
 // TODO: add proptypes
 const SelectCity = ({ city, handleCityChange }: any) => (
-  <div className="pl-4 ">
+  <div>
     <input
       type="text"
       placeholder="Enter city name"

@@ -8,7 +8,7 @@ const OverviewCard = ({
   loading: boolean
 }) =>
   displayedWeatherData ? (
-    <div className="p-4 text-pink-200 md:w-1/2">
+    <div className="text-pink-200 md:w-1/2">
       <h2 className="text-3xl font-semibold mb-2 self-center ">
         Today in {displayedWeatherData.locationName}
       </h2>
