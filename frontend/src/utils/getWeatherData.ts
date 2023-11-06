@@ -6,6 +6,6 @@ export const getWeatherData = async (city: string): Promise<AxiosResponse<any, a
   try {
     return await axios.get(`${API_BASE_URL}/weather/${city}`)
   } catch (error) {
-    throw new Error('Error fetching calling the api')
+    throw new Error('Please enter a valid city name ')
   }
 }

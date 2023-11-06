@@ -1,6 +1,6 @@
 import { DisplayedWeatherData } from '../types/types'
 
-const OverviewCard = ({
+const WeatherOverviewCard = ({
   displayedWeatherData,
   loading
 }: {
@@ -24,18 +24,22 @@ const OverviewCard = ({
           <p className="text-7xl font-bold text-pink-500">{displayedWeatherData.temp}°C</p>
           <p className="text-lg text-gray-600">Feels Like: {displayedWeatherData.feelsLike}°C</p>
         </div>
-        <div className="flex flex-col justify-center items-center md:items-start text-xs text-gray-600 mt-6 md:mt-0 md:ml-4 ">
-          <p>Min Temperature: {displayedWeatherData.temp_min}°C</p>
-          <p>Max Temperature: {displayedWeatherData.temp_max}°C</p>
-          <p>Humidity: {displayedWeatherData.humidity}%</p>
-          <p>Visibility: {displayedWeatherData.visibility} meters</p>
-          <p>Cloud Coverage: {displayedWeatherData.cloudCoverage}%</p>
-          <p>Wind Speed {displayedWeatherData.windSpeed} m/s</p>
-          <p>Sunrise: {new Date(displayedWeatherData.sunrise * 1000).toLocaleTimeString()}</p>
-          <p>Sunset: {new Date(displayedWeatherData.sunset * 1000).toLocaleTimeString()}</p>
+        <div className="flex md:flex-col gap-2 justify-center items-center md:items-start text-xs text-gray-600 mt-6 md:mt-0 md:ml-4 ">
+          <div>
+            <p>Min Temperature: {displayedWeatherData.temp_min}°C</p>
+            <p>Max Temperature: {displayedWeatherData.temp_max}°C</p>
+            <p>Humidity: {displayedWeatherData.humidity}%</p>
+            <p>Wind Speed {displayedWeatherData.windSpeed} m/s</p>
+          </div>
+          <div>
+            <p>Sunrise: {displayedWeatherData.sunrise}</p>
+            <p>Sunset: {displayedWeatherData.sunset}</p>
+            <p>Visibility: {displayedWeatherData.visibility} meters</p>
+            <p>Cloud Coverage: {displayedWeatherData.cloudCoverage}%</p>
+          </div>
         </div>
       </div>
     </div>
   ) : null
 
-export default OverviewCard
+export default WeatherOverviewCard
