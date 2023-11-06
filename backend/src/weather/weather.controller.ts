@@ -1,3 +1,4 @@
+//@ts-check
 import { Controller, Get, Param } from '@nestjs/common'
 import { WeatherService } from './weather.service'
 import { MappedWeatherData } from '../types/types'
@@ -7,14 +8,14 @@ export class WeatherController {
 
   @Get(':city')
   async getWeatherData(@Param('city') city: string): Promise<MappedWeatherData> {
-    const weatherDataResponse = await this.weatherService.getWeatherData(city)
-    const mappedWeatherData = this.weatherService.mapWeatherData(weatherDataResponse as any) // TODO fix type
+    const mappedWeatherDataResponse = await this.weatherService
+      .getWeatherData(city)
+      .then((res) => this.weatherService.mapWeatherData(res))
+      .catch((err) => {
+        console.log('error', err)
+        throw new Error('Error fetching weather data')
+      })
 
-    // in case the rrequest fails, there is mock data for three possible entries
-    // 'Berlin', 'London', Lisbon
-    // so that you can see the fronted connects to the backend and displays data
-    // const mockResult: MappedWeatherData = this.weatherService.mapWeatherData(useMockData(city))
-
-    return mappedWeatherData
+    return mappedWeatherDataResponse
   }
 }
