@@ -42,6 +42,6 @@ export type MappedWeatherData = {
   windSpeed: number
   cloudCoverage: number
   country: string
-  sunrise: number
-  sunset: number
+  sunrise: string
+  sunset: string
 }

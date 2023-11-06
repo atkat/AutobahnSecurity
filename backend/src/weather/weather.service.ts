@@ -15,11 +15,19 @@ export class WeatherService {
       const firstValue = await firstValueFrom(response)
       return firstValue.data
     } catch (error) {
-      throw new Error('Error fetching weather data')
+      console.error('Error fetching weather data from OpenWeatherMap API:', error.message)
     }
   }
 
   mapWeatherData(weatherData: WeatherData): MappedWeatherData {
+    const formatUnixTimestamp = (unixTime): string => {
+      const date = new Date(unixTime * 1000)
+      return `${date.getHours().toString().padStart(2, '0')}:${date
+        .getMinutes()
+        .toString()
+        .padStart(2, '0')}`
+    }
+
     const {
       name: locationName,
       weather: [{ description, icon }],
@@ -37,16 +45,16 @@ export class WeatherService {
       icon,
       temp: Math.floor(temp),
       feelsLike: Math.floor(feels_like),
-      temp_min,
-      temp_max,
+      temp_min: Math.floor(temp_min),
+      temp_max: Math.floor(temp_max),
       pressure,
       humidity,
       visibility,
       windSpeed,
       cloudCoverage,
       country,
-      sunrise,
-      sunset
+      sunrise: formatUnixTimestamp(sunrise),
+      sunset: formatUnixTimestamp(sunset)
     }
   }
 }
