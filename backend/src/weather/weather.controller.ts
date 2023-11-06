@@ -11,8 +11,7 @@ export class WeatherController {
     const mappedWeatherDataResponse = await this.weatherService
       .getWeatherData(city)
       .then((res) => this.weatherService.mapWeatherData(res))
-      .catch((err) => {
-        console.log('error', err)
+      .catch(() => {
         throw new Error('Error fetching weather data')
       })
 
