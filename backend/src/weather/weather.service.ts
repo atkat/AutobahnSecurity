@@ -10,7 +10,11 @@ export class WeatherService {
   async getWeatherData(city: string): Promise<WeatherData> {
     try {
       const response = this.httpService.get(
+<<<<<<< HEAD
         `${process.env.OPENWEATHERMAP_API_URL}?q=${city}&appid=${process.env.OPENWEATHERMAP_API_KEY}&units=metric`
+=======
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=80761d58d37fb70d5b32eb97f2f41646&units=metric`
+>>>>>>> 467d446de4b1c507499543bf7c588cfafe6a632a
       )
       const firstValue = await firstValueFrom(response)
       return firstValue.data

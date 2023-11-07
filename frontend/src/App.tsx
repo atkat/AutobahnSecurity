@@ -3,8 +3,12 @@
 import { useState, useEffect, useCallback } from 'react'
 import { getWeatherData } from './utils/getWeatherData'
 import SelectCity from './components/SelectCity'
+<<<<<<< HEAD
 import OverviewCard from './components/WaetherOverviewCard'
 import WeatherOverviewCard from './components/WaetherOverviewCard'
+=======
+import OverviewCard from './components/OverviewCard'
+>>>>>>> 467d446de4b1c507499543bf7c588cfafe6a632a
 
 function App() {
   const [displayedWeatherData, setDisplayedWeatherData] = useState(null)
